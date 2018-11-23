@@ -1,0 +1,8 @@
+server:
+  port: 9875
+spring:
+  application:
+    name: jr-message
+eureka:
+  client:
+    service-url: http://localhost:9876/eureka/
