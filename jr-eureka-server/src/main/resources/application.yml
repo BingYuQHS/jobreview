@@ -1,5 +1,5 @@
 server:
-  port: 9875
+  port: 9876
 spring:
   application:
     name: eureka-server
@@ -11,3 +11,6 @@ eureka:
     fetch-registry: false
     service-url:
       defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+#  server:  #\u914D\u7F6E\u5C5E\u6027\uFF0C\u4F46\u7531\u4E8E Eureka \u81EA\u6211\u4FDD\u62A4\u6A21\u5F0F\u4EE5\u53CA\u5FC3\u8DF3\u5468\u671F\u957F\u7684\u539F\u56E0\uFF0C\u7ECF\u5E38\u4F1A\u9047\u5230 Eureka Server \u4E0D\u5254\u9664\u5DF2\u5173\u505C\u7684\u8282\u70B9\u7684\u95EE\u9898
+#    enable-self-preservation: false
+#    eviction-interval-timer-in-ms: 5000
