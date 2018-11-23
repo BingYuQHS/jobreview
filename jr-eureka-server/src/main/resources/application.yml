@@ -3,6 +3,12 @@ server:
 spring:
   application:
     name: jr-eureka-server
+  security:
+    user:
+      name: user
+      password: 123456
+    filter:
+      order: 3
 eureka:
   instance:
     hostname: localhost
