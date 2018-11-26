@@ -1,5 +1,7 @@
 package com.flamingo.jrmessage.controller;
 
+import com.flamingo.jrmessage.enums.ResultEnum;
+import com.flamingo.jrmessage.exception.EmailException;
 import com.flamingo.jrmessage.model.ResultVO;
 import com.flamingo.jrmessage.service.IMailService;
 import com.flamingo.jrmessage.util.R;
@@ -28,8 +30,7 @@ public class EmailController {
             mailService.sendSimpleMail("1756217895@qq.com","标题：测试标题","这是一封普通的SpringBoot测试邮件");
         }catch (Exception e){
             log.error("【发送普通邮件】 邮件发送失败");
-            return R.error(10000,"邮件发送失败");
-            // throw new EmailException(ResultEnum.SEND_EMAIL_FIAL);
+            throw new EmailException(ResultEnum.SEND_EMAIL_FIAL);
         }
         return R.ok();
     }
@@ -49,8 +50,7 @@ public class EmailController {
                     + "	</div>\n" + "</body>");
         }catch (Exception e){
             log.error("【发送html邮件】 邮件发送失败");
-            return R.error(10000,"邮件发送失败");
-            // throw new EmailException(ResultEnum.SEND_EMAIL_FIAL);
+            throw new EmailException(ResultEnum.SEND_EMAIL_FIAL);
         }
         return R.ok();
     }
@@ -62,8 +62,7 @@ public class EmailController {
             mailService.sendAttachmentMail("1756217895@qq.com", "这是一封带附件的邮件", "邮件中有附件，请注意查收！", filePath);
         }catch (Exception e){
             log.error("【发送带附件邮件】 邮件发送失败");
-            return R.error(10000,"邮件发送失败");
-            // throw new EmailException(ResultEnum.SEND_EMAIL_FIAL);
+            throw new EmailException(ResultEnum.SEND_EMAIL_FIAL);
         }
         return R.ok();
     }
@@ -78,8 +77,7 @@ public class EmailController {
 
         }catch (Exception e){
             log.error("【发送正文中有静态资源的邮件】 邮件发送失败");
-            return R.error(10000,"邮件发送失败");
-            // throw new EmailException(ResultEnum.SEND_EMAIL_FIAL);
+            throw new EmailException(ResultEnum.SEND_EMAIL_FIAL);
         }
         return R.ok();
     }
@@ -100,8 +98,8 @@ public class EmailController {
             mailService.sendHtmlMail("1756217895@qq.com", "这是模板邮件", emailContent);
         }catch (Exception ex){
             log.error("【发送模板邮件】 邮件发送失败");
-            return R.error(10002,"模板邮件发送失败");
-            // throw new EmailException(ResultEnum.SEND_EMAIL_FIAL);
+            // return R.error(10002,"模板邮件发送失败");//这种方式效果相同，返回异常错误码http状态为200
+            throw new EmailException(ResultEnum.SEND_EMAIL_FIAL);
         }
         return R.ok();
     }

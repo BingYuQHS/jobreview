@@ -20,4 +20,9 @@ public class EmailException extends RuntimeException {
         super(message);
         this.code = code;
     }
+
+    /** 获取code. */
+    public Integer getCode() {
+        return code;
+    }
 }

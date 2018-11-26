@@ -17,7 +17,7 @@ public class R {
         ResultVO resultVO = new ResultVO();
         resultVO.setData(object);
         resultVO.setCode(0);
-        resultVO.setMsg("成功");
+        resultVO.setMsg("success");
         return resultVO;
     }
 
@@ -39,6 +39,21 @@ public class R {
         ResultVO resultVO = new ResultVO();
         resultVO.setCode(code);
         resultVO.setMsg(msg);
+        return resultVO;
+    }
+
+    /**
+     * 失败，返回错误信息和数据
+     * @param code
+     * @param msg
+     * @param object
+     * @return
+     */
+    public static ResultVO error(Integer code, String msg, Object object) {
+        ResultVO resultVO = new ResultVO();
+        resultVO.setCode(code);
+        resultVO.setMsg(msg);
+        resultVO.setData(object);
         return resultVO;
     }
 }
