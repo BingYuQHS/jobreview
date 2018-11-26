@@ -25,7 +25,7 @@ public class EmailController {
     @GetMapping("/simpleMail")
     public ResultVO simpleMail(){
         try {
-            mailService.sendSimpleMail("1756217895@qq.com","SpringBootEmail","这是一封普通的SpringBoot测试邮件");
+            mailService.sendSimpleMail("1756217895@qq.com","标题：测试标题","这是一封普通的SpringBoot测试邮件");
         }catch (Exception e){
             log.error("【发送普通邮件】 邮件发送失败");
             return R.error(10000,"邮件发送失败");
