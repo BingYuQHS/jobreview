@@ -3,6 +3,20 @@ server:
 spring:
   application:
     name: jr-message
+  mail:
+    host: smtp.163.com
+    username: m18349187971@163.com
+    password: SHOUQUAN163
+    protocol: smtp
+    from: m18349187971@163.com
+    default-encoding: utf-8
+    properties.mail.smtp.auth: true
+    properties.mail.smtp.port: 465 #465或者994
+    properties.mail.display.sendmail: Javen
+    properties.mail.display.sendname: Spring Boot Email
+    properties.mail.smtp.starttls.enable: true
+    properties.mail.smtp.starttls.required: true
+    properties.mail.smtp.ssl.enable: true
 eureka:
   client:
     service-url:
