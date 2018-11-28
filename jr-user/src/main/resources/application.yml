@@ -1,0 +1,9 @@
+server:
+  port: 9874
+spring:
+  application:
+    name: jr-user
+eureka:
+  client:
+    service-url:
+     defaultZone: http://user:123456@localhost:9876/eureka/

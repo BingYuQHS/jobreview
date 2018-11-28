@@ -21,6 +21,8 @@
 	<!--子模块配置-->
 	<modules>
 		<module>jr-eureka-server</module>
+		<module>jr-message</module>
+		<module>jr-user</module>
 	</modules>
 
 	<properties>
