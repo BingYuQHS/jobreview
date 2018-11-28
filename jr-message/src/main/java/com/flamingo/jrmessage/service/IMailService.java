@@ -13,8 +13,8 @@ public interface IMailService {
      * @param subject
      * @param content
      */
-    public void sendSimpleMail(String to, String subject, String content) throws MessagingException;
-    public void sendSimpleMail(String to, String subject,String content, String... cc) throws MessagingException;
+    void sendSimpleMail(String to, String subject, String content) throws MessagingException;
+    void sendSimpleMail(String to, String subject,String content, String... cc) throws MessagingException;
 
     /**
      * 发送HTML邮件
@@ -23,8 +23,8 @@ public interface IMailService {
      * @param content
      * @throws MessagingException
      */
-    public void sendHtmlMail(String to, String subject, String content) throws MessagingException;
-    public void sendHtmlMail(String to, String subject, String content, String... cc) throws MessagingException;
+    void sendHtmlMail(String to, String subject, String content) throws MessagingException;
+    void sendHtmlMail(String to, String subject, String content, String... cc) throws MessagingException;
 
     /**
      * 发送带附件的邮件
@@ -34,8 +34,8 @@ public interface IMailService {
      * @param filePath
      * @throws MessagingException
      */
-    public void sendAttachmentMail(String to, String subject, String content, String filePath) throws MessagingException;
-    public void sendAttachmentMail(String to, String subject, String content, String filePath, String... cc) throws MessagingException;
+    void sendAttachmentMail(String to, String subject, String content, String filePath) throws MessagingException;
+    void sendAttachmentMail(String to, String subject, String content, String filePath, String... cc) throws MessagingException;
 
     /**
      * 发送正文中有静态资源的邮件
@@ -46,6 +46,16 @@ public interface IMailService {
      * @param rscId
      * @throws MessagingException
      */
-    public void sendResourceMail(String to, String subject, String content, String rscPath, String rscId) throws MessagingException;
-    public void sendResourceMail(String to, String subject, String content, String rscPath, String rscId, String... cc) throws MessagingException;
+    void sendResourceMail(String to, String subject, String content, String rscPath, String rscId) throws MessagingException;
+    void sendResourceMail(String to, String subject, String content, String rscPath, String rscId, String... cc) throws MessagingException;
+
+    /**
+     * 添加内容主题限制
+     * @param toUser
+     * @param subject
+     * @param content
+     * @return
+     */
+    boolean sendGeneralEmail(String toUser, String subject, String content);
+
 }

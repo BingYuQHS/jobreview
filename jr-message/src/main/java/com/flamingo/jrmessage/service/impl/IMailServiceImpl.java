@@ -1,6 +1,13 @@
 package com.flamingo.jrmessage.service.impl;
 
+import com.flamingo.jrmessage.config.TopicRabbitMQConfig;
+import com.flamingo.jrmessage.enums.MqQueueEnum;
+import com.flamingo.jrmessage.enums.ResultEnum;
+import com.flamingo.jrmessage.exception.EmailException;
 import com.flamingo.jrmessage.service.IMailService;
+import com.flamingo.jrmessage.template.EmailMsgTemplate;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.FileSystemResource;
@@ -14,11 +21,16 @@ import javax.mail.internet.MimeMessage;
 import java.io.File;
 
 @Component
+@Slf4j
 public class IMailServiceImpl implements IMailService {
 
     /** 注入JavaMailSender. */
     @Autowired
     private JavaMailSender mailSender;
+
+    /** 注入RabbitTemplate. */
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
 
     @Value("${spring.mail.from}")
     private String from;
@@ -31,14 +43,6 @@ public class IMailServiceImpl implements IMailService {
         message.setSubject(subject);
         message.setText(content);
         mailSender.send(message);
-
-        // MimeMessage message = mailSender.createMimeMessage();
-        // MimeMessageHelper helper = new MimeMessageHelper(message);
-        // helper.setFrom(from);
-        // helper.setTo(to);
-        // helper.setSubject(subject);
-        // helper.setText(content);
-        // mailSender.send(message);
     }
 
     @Override
@@ -138,5 +142,21 @@ public class IMailServiceImpl implements IMailService {
         helper.addInline(rscId, res);
 
         mailSender.send(message);
+    }
+
+    @Override
+    public boolean sendGeneralEmail(String toUser, String subject, String content) {
+        if(content.length()>255){
+            log.error("邮件内容超出限制");
+            throw new EmailException(ResultEnum.EMAIL_CONTENT_ERROR);
+        }
+        if(subject.length()>50){
+            log.error("邮件主题超出限制");
+            throw new EmailException(ResultEnum.EMAIL_SUBJECT_ERROR);
+        }
+
+        rabbitTemplate.convertAndSend(MqQueueEnum.EMAIL_QUEUE.getQueueName()
+                ,new EmailMsgTemplate(toUser,subject,content,"email_channel"));
+        return true;
     }
 }

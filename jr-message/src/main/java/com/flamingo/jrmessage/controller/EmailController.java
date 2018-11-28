@@ -104,4 +104,10 @@ public class EmailController {
         return R.ok();
     }
 
+    @GetMapping("/generalMail")
+    public ResultVO generalMail(){
+        mailService.sendGeneralEmail("1756217895@qq.com","标题：测试标题","这是一封普通的SpringBoot测试邮件");
+        return R.ok();
+    }
+
 }
