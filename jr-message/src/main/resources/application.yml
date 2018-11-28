@@ -3,6 +3,7 @@ server:
 spring:
   application:
     name: jr-message
+  # 邮件配置
   mail:
     host: smtp.163.com
     username: m18349187971@163.com
@@ -17,6 +18,12 @@ spring:
     properties.mail.smtp.starttls.enable: true
     properties.mail.smtp.starttls.required: true
     properties.mail.smtp.ssl.enable: true
+  # 消息中间建配置
+  rabbitmq:
+      host: localhost
+      port: 5672
+      username: qinhs
+      password: 123456
 eureka:
   client:
     service-url:
