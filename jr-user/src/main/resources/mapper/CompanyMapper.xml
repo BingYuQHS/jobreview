@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.flamingo.jruser.dao.CompanyMapper">
+    <!--CompanyInfo结果集-->
+    <resultMap id="userInfoResultMap" type="com.flamingo.jruser.model.entity.CompanyInfo">
+        <result column="company_id" property="companyId"/>
+        <result column="company_name" property="companyName"/>
+        <result column="company_no" property="companyNo"/>
+        <result column="license_path" property="licensePath"/>
+        <result column="check_type" property="checkType"/>
+    </resultMap>
+
+    <insert id="insertCompany" parameterType="com.flamingo.jruser.model.entity.CompanyInfo" useGeneratedKeys="true" keyProperty="companyInfo.companyId">
+        INSERT INTO company_info
+        (company_name,company_no,license_path,check_type)
+        VALUES
+        (#{companyInfo.companyName},#{companyInfo.companyNo},#{companyInfo.licensePath},#{companyInfo.checkType})
+    </insert>
+
+</mapper>

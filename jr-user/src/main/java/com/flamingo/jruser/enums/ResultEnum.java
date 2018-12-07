@@ -8,6 +8,8 @@ import lombok.Getter;
 @Getter
 public enum ResultEnum {
     SAVE_USER_FAILD(20001,"存入用户失败"),
+
+    SAVE_COMPANY_FAILD(20002,"存入企业失败"),
     ;
 
     private Integer code;
