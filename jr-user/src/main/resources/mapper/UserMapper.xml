@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.flamingo.jruser.dao.UserMapper">
+    <!--UserInfo结果集-->
+    <resultMap id="userInfoResultMap" type="com.flamingo.jruser.model.entity.UserInfo">
+        <result column="user_id" property="userId"/>
+        <result column="company_id" property="companyId"/>
+        <result column="user_type" property="userType"/>
+        <result column="status" property="status"/>
+        <result column="exact_name" property="exactName"/>
+        <result column="password" property="password"/>
+        <result column="sex" property="sex"/>
+        <result column="phone" property="phone"/>
+        <result column="email" property="email"/>
+        <result column="id_card" property="idCard"/>
+        <result column="license_url_f" property="licenseUrlF"/>
+        <result column="license_url_b" property="licenseUrlB"/>
+        <result column="nick_name" property="nickName"/>
+        <result column="birthday" property="birthday"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+    </resultMap>
+
+    <insert id="insertUser" parameterType="com.flamingo.jruser.model.entity.UserInfo" useGeneratedKeys="true" keyProperty="userInfo.userId">
+        INSERT INTO user_info
+        (company_id,user_type,exact_name,password,sex,phone,email,id_card)
+        VALUES
+        (#{userInfo.companyId},#{userInfo.userType},#{userInfo.exactName},#{userInfo.password},#{userInfo.sex},#{userInfo.phone},#{userInfo.email},#{userInfo.idCard})
+    </insert>
+
+    <select id="getUserList" parameterType="java.lang.Integer" resultMap="userInfoResultMap">
+        SELECT * FROM user_info WHERE company_id=#{companyId}
+    </select>
+</mapper>
