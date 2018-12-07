@@ -16,7 +16,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         try {
             http.csrf().disable().authorizeRequests().anyRequest().authenticated().and().httpBasic();
         }catch (Exception e){
-            log.error("【jr-message服务免密注册失败】");
+            log.error("【服务免密注册失败】");
             e.printStackTrace();
         }
 
