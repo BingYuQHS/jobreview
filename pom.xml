@@ -23,6 +23,7 @@
 		<module>jr-eureka-server</module>
 		<module>jr-message</module>
 		<module>jr-user</module>
+		<module>jr-auth</module>
 	</modules>
 
 	<properties>
